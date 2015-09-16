@@ -15,7 +15,7 @@ public class GetTheStockTest extends TestCase {
 		GetTheStock generator = new GetTheStock();
 		generator.setRandomizer(rand);
 		generator.setPrice(10);
-		double price = generator.getPrice();
+		double price = generator.updatePrice();
 		
 		assertEquals(10.01, price);
 	}
