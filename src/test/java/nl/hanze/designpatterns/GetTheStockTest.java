@@ -4,6 +4,8 @@ package nl.hanze.designpatterns;
 import java.util.Random;
 
 import junit.framework.TestCase;
+import nl.hanze.designpatterns.stocks.IBMStock;
+import nl.hanze.designpatterns.stocks.Stock;
 
 import org.junit.Test;
 
@@ -14,9 +16,12 @@ public class GetTheStockTest extends TestCase {
 		
 		GetTheStock generator = new GetTheStock();
 		generator.setRandomizer(rand);
-		generator.setPrice(10);
-		double price = generator.updatePrice();
 		
-		assertEquals(10.01, price);
+		Stock stock = new IBMStock();
+		stock.setPrice(10);
+		
+		generator.updateStock(stock);
+		
+		assertEquals(10.01, stock.getPrice());
 	}
 }

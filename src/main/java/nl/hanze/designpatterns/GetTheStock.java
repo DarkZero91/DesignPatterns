@@ -1,20 +1,23 @@
 package nl.hanze.designpatterns;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import nl.hanze.designpatterns.stocks.Stock;
+
 public class GetTheStock implements Runnable {
-	private String stock;
-	private double price;
+	private List<Stock> stocks;
 	private Subject subject;
 	private Random rand;
 	
-	public void setStockName(String stock) {
-		this.stock = stock;
+	public GetTheStock() {
+		stocks = new ArrayList<Stock>();
 	}
 	
-	public void setPrice(double price) {
-		this.price = price;
+	public void addStock(Stock stock) {
+		stocks.add(stock);
 	}
 	
 	public void setSubject(Subject subject) {
@@ -25,14 +28,20 @@ public class GetTheStock implements Runnable {
 		this.rand = rand;
 	}
 	
-	public double updatePrice() {
+	public void updateStock(Stock stock) {
 		double randNum = (rand.nextDouble() * (.06)) - .03;
 		DecimalFormat df = new DecimalFormat("#.##");
-		return Double.valueOf(df.format((price + randNum)).replace(",", "."));
+		
+		double price = Double.valueOf(df.format((stock.getPrice() + randNum)).replace(",", "."));
+		stock.setPrice(price);
 	}
 	
 	public void run() {
-		price = updatePrice();
-		subject.notifyObservers(stock, price);
+		for(Stock stock : stocks) {
+			updateStock(stock);
+			subject.notifyObservers(stock);
+			
+			Thread.sleep(2000);
+		}
 	}
 }
