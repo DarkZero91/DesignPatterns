@@ -1,9 +1,13 @@
 package nl.hanze.designpatterns;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import nl.hanze.designpatterns.stocks.Stock;
 
 public class StockGrabber implements Subject {
-	private ArrayList<Observer> observers;
+	private List<Observer> observers;
+	
 	
 	public StockGrabber() {
 		observers = new ArrayList<Observer>();
@@ -17,9 +21,9 @@ public class StockGrabber implements Subject {
 		observers.remove(observers);		
 	}
 
-	public void notifyObservers(String name, double price) {
+	public void notifyObservers(Stock stock) {
 		for(Observer observer : observers) {
-			observer.update(name, price);
+			observer.update(stock);
 		}
 	}
 	
