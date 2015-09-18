@@ -1,7 +1,6 @@
 package nl.hanze.designpatterns.observers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import nl.hanze.designpatterns.stocks.IBMStock;
 import nl.hanze.designpatterns.stocks.Stock;
@@ -17,6 +16,8 @@ public class IBMPrice extends Observer {
 			for(View view : views) {
 				view.update(stock);
 			}
+			
+			System.out.println("Stock IBM: " + stock.getPrice());
 		}
 	}	
 }
