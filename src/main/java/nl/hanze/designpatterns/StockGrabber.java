@@ -3,6 +3,7 @@ package nl.hanze.designpatterns;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.hanze.designpatterns.observers.Observer;
 import nl.hanze.designpatterns.stocks.Stock;
 
 public class StockGrabber implements Subject {
