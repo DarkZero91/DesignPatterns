@@ -3,6 +3,7 @@ package nl.hanze.designpatterns;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 import nl.hanze.designpatterns.async.GetTheStock;
 import nl.hanze.designpatterns.observers.IBMPrice;
@@ -11,6 +12,7 @@ import nl.hanze.designpatterns.stocks.IBMStock;
 import nl.hanze.designpatterns.stocks.Stock;
 import nl.hanze.designpatterns.subjects.StockGrabber;
 import nl.hanze.designpatterns.subjects.Subject;
+import nl.hanze.designpatterns.views.TextView;
 
 /**
  * Hello world!
@@ -33,9 +35,17 @@ public class App extends JFrame
 	}
 	
 	public void setup() {
+		JTabbedPane tabbedPane = new JTabbedPane();
+		this.add(tabbedPane);
+		
+		// Create Views
+		TextView textView = new TextView();
+		tabbedPane.addTab("Text", textView);
+		
 		// Create Subject and Observer objects.
 		Subject stockGrabber = new StockGrabber();
 		Observer ibm = new IBMPrice();
+		ibm.addView(textView);
 		stockGrabber.registerObserver(ibm);
 		
 		// Instantiate the GetTheStock object.

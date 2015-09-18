@@ -16,8 +16,6 @@ public class IBMPrice extends Observer {
 			for(View view : views) {
 				view.update(stock);
 			}
-			
-			System.out.println("Stock IBM: " + stock.getPrice());
 		}
 	}	
 }
