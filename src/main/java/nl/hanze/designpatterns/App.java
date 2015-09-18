@@ -2,6 +2,8 @@ package nl.hanze.designpatterns;
 
 import java.util.Random;
 
+import javax.swing.JFrame;
+
 import nl.hanze.designpatterns.async.GetTheStock;
 import nl.hanze.designpatterns.observers.IBMPrice;
 import nl.hanze.designpatterns.observers.Observer;
@@ -14,10 +16,23 @@ import nl.hanze.designpatterns.subjects.Subject;
  * Hello world!
  *
  */
-public class App
+public class App extends JFrame
 {
-	public static void main( String[] args )
-    {
+	private static final long serialVersionUID = 1L;
+
+	public static void main( String[] args ) { new App(); }
+	
+	public App() {
+		super("StockGrabber");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setup();
+		
+		pack();
+		setVisible(true);
+	}
+	
+	public void setup() {
 		// Create Subject and Observer objects.
 		Subject stockGrabber = new StockGrabber();
 		Observer ibm = new IBMPrice();
@@ -37,5 +52,5 @@ public class App
 		// Start the task.
 		Thread thread = new Thread(gts);
 		thread.start();
-    }
+	}
 }
