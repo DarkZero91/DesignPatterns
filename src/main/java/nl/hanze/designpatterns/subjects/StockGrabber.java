@@ -1,4 +1,4 @@
-package nl.hanze.designpatterns;
+package nl.hanze.designpatterns.subjects;
 
 import java.util.ArrayList;
 import java.util.List;

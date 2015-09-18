@@ -4,6 +4,7 @@ package nl.hanze.designpatterns;
 import java.util.Random;
 
 import junit.framework.TestCase;
+import nl.hanze.designpatterns.async.GetTheStock;
 import nl.hanze.designpatterns.stocks.IBMStock;
 import nl.hanze.designpatterns.stocks.Stock;
 

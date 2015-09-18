@@ -1,4 +1,4 @@
-package nl.hanze.designpatterns;
+package nl.hanze.designpatterns.async;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import nl.hanze.designpatterns.stocks.Stock;
+import nl.hanze.designpatterns.subjects.Subject;
 
 public class GetTheStock implements Runnable {
 	private List<Stock> stocks;

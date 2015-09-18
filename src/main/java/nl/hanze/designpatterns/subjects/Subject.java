@@ -1,4 +1,4 @@
-package nl.hanze.designpatterns;
+package nl.hanze.designpatterns.subjects;
 
 import nl.hanze.designpatterns.observers.Observer;
 import nl.hanze.designpatterns.stocks.Stock;
