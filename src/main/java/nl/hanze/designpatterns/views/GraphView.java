@@ -47,7 +47,7 @@ public class GraphView extends JPanel implements View {
         this.add(chartPanel);
 	}
 	
-	public void update(Stock stock) {
+	public synchronized void update(Stock stock) {
 		TimeSeries ts = series.get(stock.getClass());
 		
 		if(ts == null) {
