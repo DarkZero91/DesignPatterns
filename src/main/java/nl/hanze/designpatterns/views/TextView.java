@@ -23,9 +23,9 @@ public class TextView extends JPanel implements View {
 		this.add(scrollPane);
 	}
 	
-	public void update(Stock stock) {
+	public synchronized void update(Stock stock) {
 		String text = textPane.getText();
-		text += stock.getName() + ": " + stock.getPrice() + "\n";
+		text = stock.getName() + ": " + stock.getPrice() + "\n" + text;
 		textPane.setText(text);
 	}
 
