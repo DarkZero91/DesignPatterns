@@ -12,6 +12,7 @@ public class GetTheStock implements Runnable {
 	private List<Stock> stocks;
 	private Subject subject;
 	private Random rand;
+	private boolean run;
 	
 	public GetTheStock() {
 		stocks = new ArrayList<Stock>();
@@ -37,13 +38,20 @@ public class GetTheStock implements Runnable {
 		stock.setPrice(price);
 	}
 	
+	public void stop() {
+		run = false;
+	}
+	
 	public void run() {
-		for(Stock stock : stocks) {
-			updateStock(stock);
-			subject.notifyObservers(stock);
-			
-			try { Thread.sleep(2000); }
-			catch (InterruptedException e) { e.printStackTrace(); }
+		run = true;
+		while(run) {
+			for(Stock stock : stocks) {
+				updateStock(stock);
+				subject.notifyObservers(stock);
+				
+				try { Thread.sleep(2000); }
+				catch (InterruptedException e) { e.printStackTrace(); }
+			}
 		}
 	}
 }
