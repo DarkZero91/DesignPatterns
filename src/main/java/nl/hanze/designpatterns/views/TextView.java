@@ -18,8 +18,7 @@ public class TextView extends JPanel implements View {
 		
 		JScrollPane scrollPane = new JScrollPane(textPane);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setPreferredSize(new Dimension(250, 145));
-		scrollPane.setMinimumSize(new Dimension(10, 10));
+		scrollPane.setPreferredSize(new Dimension(600, 300));
 		
 		this.add(scrollPane);
 	}
@@ -27,7 +26,6 @@ public class TextView extends JPanel implements View {
 	public void update(Stock stock) {
 		String text = textPane.getText();
 		text += stock.getName() + ": " + stock.getPrice() + "\n";
-		System.out.println(text);
 		textPane.setText(text);
 	}
 
