@@ -7,9 +7,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import nl.hanze.designpatterns.async.GetTheStock;
+import nl.hanze.designpatterns.observers.ApplePrice;
 import nl.hanze.designpatterns.observers.IBMPrice;
 import nl.hanze.designpatterns.observers.MSPrice;
 import nl.hanze.designpatterns.observers.Observer;
+import nl.hanze.designpatterns.stocks.AppleStock;
 import nl.hanze.designpatterns.stocks.IBMStock;
 import nl.hanze.designpatterns.stocks.MSStock;
 import nl.hanze.designpatterns.stocks.Stock;
@@ -60,6 +62,7 @@ public class App extends JFrame
 				
 		initObserver(new IBMPrice(), stockGrabber, views);
 		initObserver(new MSPrice(), stockGrabber, views);
+		initObserver(new ApplePrice(), stockGrabber, views);
 		
 		// Create the stocks.
 		Stock ibmStock = new IBMStock();
@@ -68,10 +71,14 @@ public class App extends JFrame
 		Stock msStock = new MSStock();
 		msStock.setPrice(15);
 		
+		Stock appleStock = new AppleStock();
+		appleStock.setPrice(13);
+		
 		// Instantiate the GetTheStock objects.
 		Random rand = new Random();	
 		createStockTask(stockGrabber, ibmStock, rand);
 		createStockTask(stockGrabber, msStock, rand);
+		createStockTask(stockGrabber, appleStock, rand);
 	}
 	
 	private void initObserver(Observer observer, Subject subject, View[] views) {
