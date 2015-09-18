@@ -1,6 +1,8 @@
 package nl.hanze.designpatterns.views;
 
 import java.awt.Dimension;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -9,27 +11,30 @@ import nl.hanze.designpatterns.stocks.Stock;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.time.Second;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 
 public class GraphView extends JPanel implements View {
 	private static final long serialVersionUID = 1L;
-	private DefaultCategoryDataset dataset;
+	private TimeSeriesCollection dataset;
 	private JFreeChart lineChart;
-	private int n;
+	private Map<Class<?>, TimeSeries> series;
 	
 	public GraphView() {
-		dataset = new DefaultCategoryDataset();		
+		series = new HashMap<Class<?>, TimeSeries>();
+		dataset = new TimeSeriesCollection();		
 		
-		lineChart = ChartFactory.createLineChart(
+		lineChart = ChartFactory.createTimeSeriesChart(
 		         "Stock Values",
-		         "Time","Value",
+		         "Time",
+		         "Value",
 		         dataset,
-		         PlotOrientation.VERTICAL,
-		         false,false,false);
+		         true,
+		         true,
+		         false);
 		lineChart.setAntiAlias(true);
-		
-		
+        
 		ChartPanel chartPanel = new ChartPanel(lineChart) {
             private static final long serialVersionUID = 1L;
 
@@ -43,6 +48,14 @@ public class GraphView extends JPanel implements View {
 	}
 	
 	public void update(Stock stock) {
-		dataset.addValue(stock.getPrice(), stock.getName(), Integer.toString(++n));
+		TimeSeries ts = series.get(stock.getClass());
+		
+		if(ts == null) {
+			ts = new TimeSeries(stock.getName());
+			series.put(stock.getClass(), ts);
+			dataset.addSeries(ts);
+		}
+		
+		ts.add(new Second(), stock.getPrice());
 	}
 }
