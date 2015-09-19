@@ -1,7 +1,7 @@
 package nl.hanze.designpatterns.pizza;
 
 public class PlainPizza implements Pizza {
-	private PizzaSize size;
+	private PizzaSize size = PizzaSize.MEDIUM;
 	
 	public String getDescription() {
 		return "Thin dough";
