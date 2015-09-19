@@ -1,5 +1,5 @@
 package nl.hanze.designpatterns.pizza;
 
 public enum PizzaSize {
-	SMALL, MEDUIM, LARGE;
+	SMALL, MEDIUM, LARGE;
 }
