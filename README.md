@@ -1,2 +1,2 @@
-# StockGrabber
-DesignPatterns Assignment 1
+# <Title>
+DesignPatterns Assignment <#>
