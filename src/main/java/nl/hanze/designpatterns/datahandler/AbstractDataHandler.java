@@ -1,4 +1,4 @@
-package nl.hanze.designpatterns;
+package nl.hanze.designpatterns.datahandler;
 
 public abstract class AbstractDataHandler {
 	abstract public String readData();
