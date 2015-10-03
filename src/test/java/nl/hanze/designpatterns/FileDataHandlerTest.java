@@ -1,5 +1,9 @@
 package nl.hanze.designpatterns;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,8 +11,6 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 import nl.hanze.designpatterns.datahandler.AbstractDataHandler;
 import nl.hanze.designpatterns.datahandler.FileDataHandler;
@@ -46,6 +48,10 @@ public class FileDataHandlerTest {
 	@After
 	public void teardown() {
 		file.delete();
+		
+		// Destroy the output file.
+		file = new File("output.txt");
+		if(file.exists()) { file.delete(); }
 	}
 	
 	@Test
@@ -61,6 +67,18 @@ public class FileDataHandlerTest {
 		
 		// We're only interested in the first part of the Lorem Ipsum dummy string.
 		assertEquals("Lorem ipsum dolor sit amet", data);
+	}
+	
+
+	@Test
+	public void testWriteData() {
+		handler.readData();
+		handler.processData();
+		handler.writeData();
+		
+		File file = new File("output.txt");
+		assertTrue("The output file does not exist.", file.exists());
+		assertEquals("The file content is wrong.", 26, file.length());
 	}
 	
 	private void pupulateResourceFile(File file) throws IOException {

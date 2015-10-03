@@ -2,6 +2,7 @@ package nl.hanze.designpatterns.datahandler;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileDataHandler extends AbstractDataHandler {
@@ -39,13 +40,22 @@ public class FileDataHandler extends AbstractDataHandler {
 
 	@Override
 	public String processData() {
-		return data.substring(0, 26);
+		data = data.substring(0, 26);
+		return data;
 	}
 
 	@Override
 	public void writeData() {
-		// TODO Auto-generated method stub
-		
+		try {
+			File file = new File("output.txt");
+			if(!file.createNewFile()) { return; }
+			
+			FileWriter writer = new FileWriter(file);
+			writer.write(data);
+			writer.flush();
+			writer.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 }
