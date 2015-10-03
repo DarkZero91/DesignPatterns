@@ -3,6 +3,8 @@ package nl.hanze.designpatterns.datahandler;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WebDataHandler extends AbstractDataHandler {
 	private String url;
@@ -35,8 +37,13 @@ public class WebDataHandler extends AbstractDataHandler {
 
 	@Override
 	public String processData() {
-		// TODO Auto-generated method stub
-		return null;
+		Pattern pattern = Pattern.compile("<title>(.*)</title>");
+		Matcher matcher = pattern.matcher(data);
+		
+		matcher.find();
+		data = matcher.group(1);
+		
+		return data;
 	}
 
 	@Override

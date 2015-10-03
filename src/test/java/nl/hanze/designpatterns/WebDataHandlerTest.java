@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import nl.hanze.designpatterns.datahandler.AbstractDataHandler;
 import nl.hanze.designpatterns.datahandler.WebDataHandler;
@@ -23,9 +24,17 @@ public class WebDataHandlerTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testReadData() {
 		String data = handler.readData();
 		assertTrue("example.org was not read properly: " + data, data.contains(exampleHtml));
 	}
 
+	@Test
+	public void testProcessData() {
+		handler.readData();
+		String data = handler.processData();
+		
+		// We're only interested in the content of the title tag.
+		assertEquals("Example Domain", data);
+	}
 }
