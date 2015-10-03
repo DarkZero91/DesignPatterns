@@ -48,8 +48,7 @@ public class WebDataHandler extends AbstractDataHandler {
 
 	@Override
 	public void writeData() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("I read example.org!");
 	}
 
 }
