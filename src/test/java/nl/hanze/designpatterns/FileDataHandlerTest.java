@@ -53,6 +53,15 @@ public class FileDataHandlerTest {
 		String data = handler.readData();
 		assertEquals(testData, data);
 	}
+	
+	@Test
+	public void testProcessData() {
+		String data = handler.readData();
+		data = handler.processData();
+		
+		// We're only interested in the first part of the Lorem Ipsum dummy string.
+		assertEquals("Lorem ipsum dolor sit amet", data);
+	}
 
 	private void pupulateResourceFile(File file) throws IOException {
 		FileWriter writer = new FileWriter(file);

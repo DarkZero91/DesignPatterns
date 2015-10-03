@@ -26,7 +26,8 @@ public class FileDataHandler extends AbstractDataHandler {
 			}
 			
 			reader.close();
-			return builder.toString();
+			data = builder.toString();
+			return data;
 		} catch (Exception e) {
 			if(reader != null) {
 				try { reader.close(); }
@@ -38,8 +39,7 @@ public class FileDataHandler extends AbstractDataHandler {
 
 	@Override
 	public String processData() {
-		// TODO Auto-generated method stub
-		return null;
+		return data.substring(0, 26);
 	}
 
 	@Override
