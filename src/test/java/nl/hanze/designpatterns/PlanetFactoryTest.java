@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import nl.hanze.designpatterns.planet.Earth;
+import nl.hanze.designpatterns.planet.Mars;
 import nl.hanze.designpatterns.planet.Planet;
 import nl.hanze.designpatterns.planet.PlanetFactory;
 
@@ -14,6 +15,12 @@ public class PlanetFactoryTest {
 	public void testMakePlanetEarth() {
 		Planet planet = makePlanet("earth");
 		assertTrue(planet instanceof Earth);
+	}
+	
+	@Test
+	public void testMakePlanetMars() {
+		Planet planet = makePlanet("mars");
+		assertTrue(planet instanceof Mars);
 	}
 	
 	private Planet makePlanet(String name) {
