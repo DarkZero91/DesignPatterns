@@ -8,6 +8,7 @@ import nl.hanze.designpatterns.planet.Earth;
 import nl.hanze.designpatterns.planet.Mars;
 import nl.hanze.designpatterns.planet.Planet;
 import nl.hanze.designpatterns.planet.PlanetFactory;
+import nl.hanze.designpatterns.planet.Pluto;
 
 public class PlanetFactoryTest {
 
@@ -21,6 +22,12 @@ public class PlanetFactoryTest {
 	public void testMakePlanetMars() {
 		Planet planet = makePlanet("mars");
 		assertTrue(planet instanceof Mars);
+	}
+	
+	@Test
+	public void testMakePlanetPluto() {
+		Planet planet = makePlanet("pluto");
+		assertTrue(planet instanceof Pluto);
 	}
 	
 	private Planet makePlanet(String name) {
