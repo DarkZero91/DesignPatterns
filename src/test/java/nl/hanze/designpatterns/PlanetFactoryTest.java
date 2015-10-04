@@ -12,13 +12,17 @@ public class PlanetFactoryTest {
 
 	@Test
 	public void testMakePlanetEarth() {
-		Planet planet = PlanetFactory.makePlanet("earth", true, true, true);
+		Planet planet = makePlanet("earth");
+		assertTrue(planet instanceof Earth);
+	}
+	
+	private Planet makePlanet(String name) {
+		Planet planet = PlanetFactory.makePlanet(name, true, true, true);
 		
 		assertTrue(planet.hasGravity());
 		assertTrue(planet.hasOxygen());
 		assertTrue(planet.hasWater());
 		
-		assertTrue(planet instanceof Earth);
+		return planet;
 	}
-
 }
