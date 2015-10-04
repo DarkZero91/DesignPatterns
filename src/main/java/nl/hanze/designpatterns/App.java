@@ -8,13 +8,9 @@ public class App
 {
     public static void main( String[] args )
     {
-    	ATM atm = new ATM();
-    	ATMState state = new hasAmount();
-    	atm.setATMstate(state);
-    	atm.insertCard();
-    	atm.ejectCard();
-    	atm.insertPin();
-    	atm.requestAmount();
-    	atm.outOfService();
+    	ATMProxy proxyatm = new ATMProxy();
+    	Client gson = new Client(proxyatm);
+    	gson.whatsTheATMState();
+    	gson.maxAmountOfCashCanIWithdraw();
     }
 }

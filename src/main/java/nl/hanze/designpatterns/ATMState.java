@@ -6,4 +6,5 @@ public interface ATMState {
 	public void insertPin();
 	public void requestAmount();
 	public void outOfService();
+	public String getStateName();
 }

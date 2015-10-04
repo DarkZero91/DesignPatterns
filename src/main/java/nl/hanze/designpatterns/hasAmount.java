@@ -22,4 +22,8 @@ public class hasAmount implements ATMState {
 		System.out.println("I'm out of service");		
 	}
 
+	public String getStateName() {
+		return "Has Amount";
+	}
+
 }

@@ -1,7 +1,13 @@
 package nl.hanze.designpatterns;
 
-public class ATM {
+public class ATM implements GetATMData{
+	final ATMState defaultstate = new Idle();
 	ATMState state;
+	int cash = 500000;
+	
+	public ATM(){
+		setATMstate(defaultstate);
+	}
 	
 	public void setATMstate(ATMState state){
 		this.state = state;
@@ -25,5 +31,13 @@ public class ATM {
 	
 	public void outOfService(){
 		state.outOfService();
+	}
+	
+	public String getATMstate() {
+		return state.getStateName();
+	}
+
+	public int getCashInMachine() {
+		return cash;
 	}
 }
